@@ -19,8 +19,8 @@ namespace :load do
     set :runit_puma_init_active_record, false
     set :runit_puma_preload_app, true
     # Rbenv and RVM integration
-    set :rbenv_map_bins, fetch(:rbenv_map_bins).to_a.concat(%w(puma pumactl))
-    set :rvm_map_bins, fetch(:rvm_map_bins).to_a.concat(%w(puma pumactl))
+    set :rbenv_map_bins, fetch(:rbenv_map_bins).to_a.concat(%w(puma))
+    set :rvm_map_bins, fetch(:rvm_map_bins).to_a.concat(%w(puma))
   end
 end
 
@@ -119,16 +119,14 @@ namespace :runit do
       on roles fetch(:runit_puma_role) do
         if test "[ -d #{puma_enabled_service_dir} ]"
           if test("[ -f #{fetch(:runit_puma_pid)} ]") && test("kill -0 $( cat #{fetch(:runit_puma_pid)} )")
-            within current_path do
-              execute :bundle, :exec, :pumactl, "-S #{fetch(:runit_puma_state)} restart"
-            end
+            runit_execute_command('puma', '2')
           else
             info 'Puma is not running'
             if test("[ -f #{fetch(:runit_puma_pid)} ]")
               info 'Removing broken pid file'
               execute :rm, '-f', fetch(:runit_puma_pid)
             end
-            execute "#{fetch(:runit_sv_path)} start #{puma_enabled_service_dir}"
+            runit_execute_command('puma', 'start')
           end
         else
           error "Puma runit service isn't enabled."
