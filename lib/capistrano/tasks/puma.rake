@@ -75,7 +75,7 @@ namespace :runit do
       on roles fetch(:runit_puma_role) do
         if test "[ -d #{puma_enabled_service_dir} ]"
           # Create puma.rb for new deployments if not in repo
-          if !fetch(:runit_puma_conf_in_repo) && !test("[ -f #{fetch(:runit_puma_conf)} ]")
+          if !fetch(:runit_puma_conf_in_repo)
             create_puma_default_conf
           end
         else
