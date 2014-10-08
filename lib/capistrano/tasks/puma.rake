@@ -5,7 +5,6 @@ namespace :load do
   task :defaults do
     set :runit_puma_role, -> { :app }
     set :runit_puma_default_hooks, -> { true }
-    set :runit_puma_run_template, nil
     set :runit_puma_workers, 1
     set :runit_puma_threads_min, 0
     set :runit_puma_threads_max, 16
