@@ -55,7 +55,7 @@ namespace :runit do
     end
 
     def create_puma_default_conf
-      warn 'puma.rb NOT FOUND!'
+      info 'Create or overwrite puma.rb'
       path = File.expand_path('../../templates/puma.rb.erb', __FILE__)
       if File.file?(path)
         template = ERB.new(File.read(path))
