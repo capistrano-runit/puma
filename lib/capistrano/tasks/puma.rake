@@ -92,7 +92,7 @@ namespace :runit do
         $stderr.puts "You should set 'runit_puma_bind' variable."
         exit 1
       end
-      setup_service('puma', collect_sidekiq_run_command)
+      setup_service('puma', collect_puma_run_command)
     end
 
     desc 'Enable puma runit service'
