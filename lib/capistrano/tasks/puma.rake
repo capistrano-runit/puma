@@ -17,6 +17,7 @@ namespace :load do
     set :runit_puma_log, -> { File.join(shared_path, 'log', 'puma.log') }
     set :runit_puma_init_active_record, false
     set :runit_puma_preload_app, true
+    set :runit_puma_restart_method, :restart
     # Rbenv and RVM integration
     set :rbenv_map_bins, fetch(:rbenv_map_bins).to_a.concat(%w(puma))
     set :rvm_map_bins, fetch(:rvm_map_bins).to_a.concat(%w(puma))
@@ -66,7 +67,17 @@ namespace :runit do
 
     task :add_default_hooks do
       after 'deploy:check', 'runit:puma:check'
-      after 'deploy:published', 'runit:puma:restart'
+      case fetch(:runit_puma_restart_method)
+      when :restart
+        after 'deploy:published', 'runit:puma:restart'
+      when :force_restart
+        after 'deploy:published', 'runit:puma:force_restart'
+      when :phased_restart
+        after 'deploy:published', 'runit:puma:phased_restart'
+      else
+        $stderr.puts 'Unknown restart method in runit_puma_restart_method variable. Allowed methods: :restart, :force_restart, :phased_restart.'
+        exit 1
+      end
     end
 
     task :check do

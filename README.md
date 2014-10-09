@@ -50,6 +50,7 @@ require 'capistrano/runit/puma'
 * `runit_puma_log` -- path to puma's log (stdout/stderr combined). Default value: `File.join(shared_path, 'log', 'puma.log')`
 * `runit_puma_init_active_record` -- Enable or not establish ActiveRecord connection. Default value: `false`
 * `runit_puma_preload_app` -- Preload application. Default value: `true`
+* `runit_puma_restart_method` -- One of following methods: :restart (default), :force_restart, :phased_restart.
 
 ## Contributing
 
