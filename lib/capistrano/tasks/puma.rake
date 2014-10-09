@@ -67,7 +67,7 @@ namespace :runit do
 
     task :add_default_hooks do
       after 'deploy:check', 'runit:puma:check'
-      after 'deploy:finished', 'runit:puma:restart'
+      after 'deploy:published', 'runit:puma:restart'
     end
 
     task :check do
