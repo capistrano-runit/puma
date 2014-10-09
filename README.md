@@ -47,8 +47,7 @@ require 'capistrano/runit/puma'
 * `runit_puma_state`  -- Path to puma's state file. Default value: `File.join(shared_path, 'tmp', 'pids', 'puma.state')`
 * `runit_puma_pid` -- Path to pid file. Default value: `File.join(shared_path, 'tmp', 'pids', 'puma.pid')`
 * `runit_puma_conf` -- Path to puma's config file. Default value: `File.join(shared_path, 'puma.rb')`
-* `runit_puma_access_log` -- Path to puma's access log. Default value: `File.join(shared_path, 'log', 'puma_access.log')`
-* `runit_puma_error_log` -- Path to puma's error log. Default value: `File.join(shared_path, 'log', 'puma_access.log')`
+* `runit_puma_log` -- path to puma's log (stdout/stderr combined). Default value: `File.join(shared_path, 'log', 'puma.log')`
 * `runit_puma_init_active_record` -- Enable or not establish ActiveRecord connection. Default value: `false`
 * `runit_puma_preload_app` -- Preload application. Default value: `true`
 

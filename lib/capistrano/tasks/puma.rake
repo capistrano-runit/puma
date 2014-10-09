@@ -14,8 +14,7 @@ namespace :load do
     set :runit_puma_bind, -> { File.join('unix://', shared_path, 'tmp', 'sockets', 'puma.sock') }
     set :runit_puma_conf, -> { File.join(shared_path, 'puma.rb') }
     set :runit_puma_conf_in_repo, -> { false }
-    set :runit_puma_access_log, -> { File.join(shared_path, 'log', 'puma_access.log') }
-    set :runit_puma_error_log, -> { File.join(shared_path, 'log', 'puma_error.log') }
+    set :runit_puma_log, -> { File.join(shared_path, 'log', 'puma.log') }
     set :runit_puma_init_active_record, false
     set :runit_puma_preload_app, true
     # Rbenv and RVM integration
