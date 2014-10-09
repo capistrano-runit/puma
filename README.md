@@ -46,7 +46,6 @@ require 'capistrano/runit/puma'
 * `runit_puma_rackup` -- Path to application's rackup file. Default value: `File.join(current_path, 'config.ru')`
 * `runit_puma_state`  -- Path to puma's state file. Default value: `File.join(shared_path, 'tmp', 'pids', 'puma.state')`
 * `runit_puma_pid` -- Path to pid file. Default value: `File.join(shared_path, 'tmp', 'pids', 'puma.pid')`
-* `runit_puma_bind` -- Puma's bind string. Default value: `File.join('unix://', shared_path, 'tmp', 'sockets', 'puma.sock')`
 * `runit_puma_conf` -- Path to puma's config file. Default value: `File.join(shared_path, 'puma.rb')`
 * `runit_puma_access_log` -- Path to puma's access log. Default value: `File.join(shared_path, 'log', 'puma_access.log')`
 * `runit_puma_error_log` -- Path to puma's error log. Default value: `File.join(shared_path, 'log', 'puma_access.log')`
