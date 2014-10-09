@@ -51,6 +51,7 @@ require 'capistrano/runit/puma'
 * `runit_puma_init_active_record` -- Enable or not establish ActiveRecord connection. Default value: `false`
 * `runit_puma_preload_app` -- Preload application. Default value: `true`
 * `runit_puma_restart_method` -- One of following methods: `:restart` (default), `:force_restart`, `:phased_restart`.
+* `runit_puma_on_worker_boot` -- Custom `on_worker_boot`code as string. Default value: nil.
 
 ## Contributing
 

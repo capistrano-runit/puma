@@ -18,6 +18,7 @@ namespace :load do
     set :runit_puma_init_active_record, false
     set :runit_puma_preload_app, true
     set :runit_puma_restart_method, :restart
+    set :runit_puma_on_worker_boot, nil
     # Rbenv and RVM integration
     set :rbenv_map_bins, fetch(:rbenv_map_bins).to_a.concat(%w(puma))
     set :rvm_map_bins, fetch(:rvm_map_bins).to_a.concat(%w(puma))

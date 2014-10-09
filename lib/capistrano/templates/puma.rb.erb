@@ -19,10 +19,15 @@ on_restart do
   ENV["BUNDLE_GEMFILE"] = "<%= fetch(:bundle_gemfile, "#{current_path}/Gemfile") %>"
 end
 
+<% if fetch(:runit_puma_init_active_record) %>
 on_worker_boot do
-  <% if fetch(:runit_puma_init_active_record) %>
   ::ActiveSupport.on_load(:active_record) do
     ::ActiveRecord::Base.establish_connection
   end
-  <% end %>
 end
+<% end %>
+<% unless fetch(:runit_puma_on_worker_boot, nil).nil? %>
+on_worker_boot do
+<%= fetch(:runit_puma_on_worker_boot) %>
+end
+<% end %>
