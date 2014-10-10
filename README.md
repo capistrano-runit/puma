@@ -39,7 +39,7 @@ require 'capistrano/runit/puma'
 * `runit_puma_role` -- what host roles uses runit to run puma. Default value: `:app`
 * `runit_puma_default_hooks` -- run default hooks for runit puma or not. Default value: `true`.
 * `runit_puma_run_template` -- path to ERB template of `run` file. Default value: `nil`.
-* `runit_puma_workers` -- number of puma workers. Default value: 1.
+* `runit_puma_workers` -- number of puma workers. Default value: 0.
 * `runit_puma_threads_min` -- minimal threads to use. Default value: 0.
 * `runit_puma_threads_max` -- maximal threads to use. Default value: 16.
 * `runit_puma_bind` -- bind URI. Examples: tcp://127.0.0.1:8080, unix:///tmp/puma.sock. Default value: nil.
@@ -49,7 +49,7 @@ require 'capistrano/runit/puma'
 * `runit_puma_conf` -- Path to puma's config file. Default value: `File.join(shared_path, 'puma.rb')`
 * `runit_puma_log` -- path to puma's log (stdout/stderr combined). Default value: `File.join(shared_path, 'log', 'puma.log')`
 * `runit_puma_init_active_record` -- Enable or not establish ActiveRecord connection. Default value: `false`
-* `runit_puma_preload_app` -- Preload application. Default value: `true`
+* `runit_puma_preload_app` -- Preload application. Default value: `false`
 * `runit_puma_restart_method` -- One of following methods: `:restart` (default), `:force_restart`, `:phased_restart`.
 * `runit_puma_on_worker_boot` -- Custom `on_worker_boot`code as string. Default value: nil.
 

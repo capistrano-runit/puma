@@ -5,7 +5,7 @@ namespace :load do
   task :defaults do
     set :runit_puma_role, -> { :app }
     set :runit_puma_default_hooks, -> { true }
-    set :runit_puma_workers, 1
+    set :runit_puma_workers, 0
     set :runit_puma_threads_min, 0
     set :runit_puma_threads_max, 16
     set :runit_puma_rackup, -> { File.join(current_path, 'config.ru') }
@@ -16,7 +16,7 @@ namespace :load do
     set :runit_puma_conf_in_repo, -> { false }
     set :runit_puma_log, -> { File.join(shared_path, 'log', 'puma.log') }
     set :runit_puma_init_active_record, false
-    set :runit_puma_preload_app, true
+    set :runit_puma_preload_app, false
     set :runit_puma_restart_method, :restart
     set :runit_puma_on_worker_boot, nil
     # Rbenv and RVM integration
