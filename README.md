@@ -42,7 +42,7 @@ require 'capistrano/runit/puma'
 * `runit_puma_workers` -- number of puma workers. Default value: 0.
 * `runit_puma_threads_min` -- minimal threads to use. Default value: 0.
 * `runit_puma_threads_max` -- maximal threads to use. Default value: 16.
-* `runit_puma_bind` -- bind URI. Examples: tcp://127.0.0.1:8080, unix:///tmp/puma.sock. Default value: nil.
+* `runit_puma_bind` -- bind URI. Examples: tcp://127.0.0.1:8080, unix:///tmp/puma.sock. It can be set per server. Default value: nil.
 * `runit_puma_rackup` -- Path to application's rackup file. Default value: `File.join(current_path, 'config.ru')`
 * `runit_puma_state`  -- Path to puma's state file. Default value: `File.join(shared_path, 'tmp', 'pids', 'puma.state')`
 * `runit_puma_pid` -- Path to pid file. Default value: `File.join(shared_path, 'tmp', 'pids', 'puma.pid')`

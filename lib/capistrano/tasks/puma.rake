@@ -55,8 +55,13 @@ namespace :runit do
       array.compact.join(' ')
     end
 
-    def create_puma_default_conf
+    def create_puma_default_conf(host)
       info 'Create or overwrite puma.rb'
+      # requirements
+      if host.fetch(:runit_puma_bind).nil? && fetch(:runit_puma_bind).nil?
+        $stderr.puts "You should set 'runit_puma_bind' variable globally or for host #{host.hostname}."
+        exit 1
+      end
       path = File.expand_path('../../templates/puma.rb.erb', __FILE__)
       if File.file?(path)
         template = ERB.new(File.read(path))
@@ -83,11 +88,11 @@ namespace :runit do
 
     task :check do
       check_service('puma')
-      on roles fetch(:runit_puma_role) do
+      on roles fetch(:runit_puma_role) do |host|
         if test "[ -d #{puma_enabled_service_dir} ]"
           # Create puma.rb for new deployments if not in repo
           if !fetch(:runit_puma_conf_in_repo)
-            create_puma_default_conf
+            create_puma_default_conf(host)
           end
         else
           error "Puma runit service isn't enabled."
@@ -97,11 +102,6 @@ namespace :runit do
 
     desc 'Setup puma runit service'
     task :setup do
-      # requirements
-      if fetch(:runit_puma_bind).nil?
-        $stderr.puts "You should set 'runit_puma_bind' variable."
-        exit 1
-      end
       setup_service('puma', collect_puma_run_command)
     end
 
