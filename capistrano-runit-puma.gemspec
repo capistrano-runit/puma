@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name        = "capistrano-runit-puma"
-  spec.version     = '0.2.0'
+  spec.version     = '0.2.1'
   spec.author      = ['Oleksandr Simonov', 'Anton Ageev']
   spec.email       = ['alex@simonov.me', 'antage@gmail.com']
   spec.summary     = %q{Capistrano3 tasks for manage puma via runit supervisor.}
