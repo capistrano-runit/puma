@@ -19,6 +19,7 @@ namespace :load do
     set :runit_puma_preload_app, false
     set :runit_puma_restart_method, :restart
     set :runit_puma_on_worker_boot, nil
+    set :runit_puma_template_path, '../../templates/puma.rb.erb'
     # Rbenv and RVM integration
     set :rbenv_map_bins, fetch(:rbenv_map_bins).to_a.concat(%w(puma))
     set :rvm_map_bins, fetch(:rvm_map_bins).to_a.concat(%w(puma))
@@ -62,7 +63,7 @@ namespace :runit do
         $stderr.puts "You should set 'runit_puma_bind' variable globally or for host #{host.hostname}."
         exit 1
       end
-      path = File.expand_path('../../templates/puma.rb.erb', __FILE__)
+      path = File.expand_path(fetch(:runit_puma_template_path), __FILE__)
       if File.file?(path)
         template = ERB.new(File.read(path))
         stream   = StringIO.new(template.result(binding))
