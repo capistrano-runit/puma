@@ -47,11 +47,7 @@ namespace :runit do
       array = []
       array << env_variables
       array << "exec #{SSHKit.config.command_map[:bundle]} exec puma"
-      puma_conf_path = if fetch(:runit_puma_conf_in_repo)
-                         "#{release_path}/config/puma.rb"
-                       else
-                         fetch(:runit_puma_conf)
-                       end
+      puma_conf_path = fetch(:runit_puma_conf)
       array << "-C #{puma_conf_path}"
       array.compact.join(' ')
     end
